@@ -35,6 +35,8 @@ texture = ExtResource("1_w77jt")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_3anf8")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhqol"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w77jt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3anf8"]
@@ -71,9 +73,16 @@ tile_set = SubResource("TileSet_fhqol")
 position = Vector2(8, 184)
 
 [node name="birbs_spawn" type="Marker2D" parent="."]
-position = Vector2(32, 72)
+position = Vector2(128, 16)
 
-[node name="worldbounds" type="Area2D" parent="."]
+[node name="goal_zone" type="Area2D" parent="."]
+position = Vector2(360, 184)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal_zone"]
+shape = SubResource("RectangleShape2D_fhqol")
+
+[node name="worldbounds" type="StaticBody2D" parent="."]
 
 [node name="left" type="CollisionShape2D" parent="worldbounds"]
 rotation = 1.5707964
@@ -81,5 +90,7 @@ shape = SubResource("WorldBoundaryShape2D_w77jt")
 
 [node name="right" type="CollisionShape2D" parent="worldbounds"]
 position = Vector2(384, 0)
-rotation = 4.712389
+rotation = -1.5707964
 shape = SubResource("WorldBoundaryShape2D_3anf8")
+
+[connection signal="body_entered" from="goal_zone" to="." method="_on_goal_zone_body_entered"]
