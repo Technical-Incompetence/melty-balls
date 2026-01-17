@@ -35,7 +35,7 @@ func _physics_process(_delta: float) -> void:
 		
 	#movement
 	if direction:
-		velocity.x = direction * Global.PLAYER_SPEED * lerp_curve(multiplier)
+		velocity.x = lerp(0.0, direction * Global.PLAYER_SPEED, lerp_curve(multiplier))
 	else:
 		velocity.x = move_toward(velocity.x, 0, Global.FRICTION)
 	
