@@ -1,7 +1,18 @@
-[gd_scene load_steps=7 format=4 uid="uid://m4ihrjrxa1ig"]
+[gd_scene load_steps=10 format=4 uid="uid://m4ihrjrxa1ig"]
 
 [ext_resource type="Script" uid="uid://b7a5p2lnl2eev" path="res://Levels/level_1.gd" id="1_3anf8"]
 [ext_resource type="Texture2D" uid="uid://cw5kx62uakpqr" path="res://Assets/Tilesets/snow-floor-tiles.png" id="1_w77jt"]
+[ext_resource type="Texture2D" uid="uid://bhokl7ayqb7rr" path="res://Assets/Tilesets/background.png" id="2_fhqol"]
+
+[sub_resource type="Gradient" id="Gradient_lo3bl"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3anf8"]
+gradient = SubResource("Gradient_lo3bl")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3anf8"]
 texture = ExtResource("1_w77jt")
@@ -26,8 +37,21 @@ sources/0 = SubResource("TileSetAtlasSource_3anf8")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3anf8"]
 
-[node name="Level1" type="Node2D"]
+[node name="Level1" type="Node2D" node_paths=PackedStringArray("light")]
 script = ExtResource("1_3anf8")
+light = NodePath("PointLight2D")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(192, -64)
+scale = Vector2(11.999999, 11.999998)
+energy = 0.77
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_3anf8")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(200, 112)
+scale = Vector2(25, 14)
+texture = ExtResource("2_fhqol")
 
 [node name="TileMap" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAwAAAAAAAIAAAAAAA0AAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAXAAwAAAACAAIAAAAWAAwAAAABAAIAAAAVAAwAAAABAAIAAAAUAAwAAAABAAIAAAATAAwAAAABAAIAAAASAAwAAAABAAIAAAARAAwAAAABAAIAAAAQAAwAAAABAAIAAAAPAAwAAAABAAIAAAAOAAwAAAABAAIAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAABAAIAAAAJAAwAAAABAAIAAAAIAAwAAAABAAIAAAAHAAwAAAABAAIAAAAGAAwAAAABAAIAAAAFAAwAAAABAAIAAAAEAAwAAAABAAIAAAADAAwAAAABAAIAAAACAAwAAAABAAIAAAABAAwAAAABAAIAAAATAAsAAAAAAAEAAAAUAAsAAAABAAEAAAAVAAoAAAABAAAAAAAWAAoAAAACAAAAAAAWAAsAAAACAAEAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAA=")

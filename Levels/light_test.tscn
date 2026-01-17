@@ -10,11 +10,11 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_dbui6"]
 gradient = SubResource("Gradient_t3bjo")
 
-[sub_resource type="Gradient" id="Gradient_lo3bl"]
+[sub_resource type="Gradient" id="Gradient_xyoik"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_t3bjo"]
-gradient = SubResource("Gradient_lo3bl")
+gradient = SubResource("Gradient_xyoik")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
@@ -45,7 +45,7 @@ shadow_enabled = true
 texture = SubResource("GradientTexture2D_t3bjo")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(560, 432)
+position = Vector2(556, 433)
 collision_layer = 2
 metadata/_edit_group_ = true
 
@@ -61,12 +61,11 @@ scale = Vector2(0.5, 0.5000001)
 texture = ExtResource("1_t3bjo")
 script = ExtResource("2_ltf8m")
 
-[node name="LightDetector" type="RayCast2D" parent="LilGuy" node_paths=PackedStringArray("light")]
+[node name="LightDetector" type="RayCast2D" parent="LilGuy"]
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("3_5weg2")
-light = NodePath("../../PointLight2D")
 metadata/_custom_type_script = "uid://cmfdqd267xvxg"
 
 [node name="DebugLine" type="Line2D" parent="LilGuy/LightDetector"]

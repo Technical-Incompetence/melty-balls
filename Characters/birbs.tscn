@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfnclf88rqoqo"]
+[gd_scene load_steps=7 format=3 uid="uid://cfnclf88rqoqo"]
 
 [ext_resource type="Script" uid="uid://k6i6leckcnh2" path="res://Characters/birbs.gd" id="1_7s0rn"]
 [ext_resource type="Texture2D" uid="uid://bndp16gqdcg2r" path="res://Assets/Sprites/birbs/birbs1.png" id="1_ewwpq"]
@@ -19,13 +19,21 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xonht"]
-size = Vector2(64, 32)
+size = Vector2(66, 18)
 
-[node name="Birbs" type="CharacterBody2D"]
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7s0rn"]
+polygon = PackedVector2Array(-30, 3, -29, 2, 29, 2, 30, 3, 30, 13, 29, 14, -29, 14, -30, 13)
+
+[node name="Birbs" type="Area2D"]
 script = ExtResource("1_7s0rn")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_td3ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_xonht")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_7s0rn")
