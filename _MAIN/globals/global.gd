@@ -15,6 +15,10 @@ var Current_Level : int
 #global consts
 const GameSizeX = 1920
 const GameSizeY = 1080
+const GRAVITY = 980
+const PLAYER_SPEED = 150
+const LILGUY_SPEED = 50
+const FRICTION = 10
 
 #global path strings
 var lilguyPath : String = "res://Characters/LilGuys.tscn"

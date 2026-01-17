@@ -34,9 +34,11 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w877"]
-size = Vector2(16, 16)
+size = Vector2(15, 15)
 
 [node name="LilGuys" type="CharacterBody2D"]
+platform_wall_layers = 1
+safe_margin = 0.001
 script = ExtResource("1_lrffq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -47,7 +49,6 @@ shape = SubResource("RectangleShape2D_7w877")
 
 [node name="LightDetector" type="RayCast2D" parent="."]
 collide_with_areas = true
-collide_with_bodies = false
 script = ExtResource("5_k6ukk")
 metadata/_custom_type_script = "uid://cmfdqd267xvxg"
 
