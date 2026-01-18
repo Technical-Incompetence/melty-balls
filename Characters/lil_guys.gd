@@ -10,10 +10,13 @@ var rotation_speed : float
 var shrink_scale : float
 var just_hit_wall : bool #could be used for an animation handler that will set this false after playing hitting-wall animation for 1-2 seconds
 
-var light: PointLight2D
+var light: Sun
 
 @export var percent_damaged_per_second: float = 15
 @export var min_shrink_scale : float = 0.5
+
+func init(sun: Sun) -> void:
+	light = sun
 
 func _ready():
 	sprite.play("default")
@@ -23,8 +26,7 @@ func _ready():
 	healthbar.visible = false
 
 func _process(_delta: float) -> void:
-	if light:
-		light_detector.set_light_position(light.global_position)
+	light_detector.set_light_position(light.global_position)
 
 	# Add some logic to handle when our lil' guy is melting
 	if not light_detector.is_colliding():

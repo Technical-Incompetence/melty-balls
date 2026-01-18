@@ -1,0 +1,96 @@
+[gd_scene load_steps=15 format=4 uid="uid://m4ihrjrxa1ig"]
+
+[ext_resource type="Script" uid="uid://dxdrjgk0ph461" path="res://Levels/level.gd" id="1_acdnu"]
+[ext_resource type="PackedScene" uid="uid://c7o1t4l0sfnfd" path="res://Characters/LilGuys.tscn" id="2_q1ycg"]
+[ext_resource type="PackedScene" uid="uid://cfnclf88rqoqo" path="res://Characters/birbs.tscn" id="3_y3x56"]
+[ext_resource type="Texture2D" uid="uid://bhokl7ayqb7rr" path="res://Assets/Tilesets/background.png" id="4_qc8g6"]
+[ext_resource type="PackedScene" uid="uid://b7roenci6wpu0" path="res://Characters/sun.tscn" id="5_q1ycg"]
+[ext_resource type="Texture2D" uid="uid://cw5kx62uakpqr" path="res://Assets/Tilesets/snow-floor-tiles.png" id="6_n6v67"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q1ycg"]
+polygon = PackedVector2Array(8, 8, 8, -8, -8, -8, -8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_y3x56"]
+polygon = PackedVector2Array(-8, 8, -8, 7.2413588, 8, 4.9319525, 8, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qc8g6"]
+polygon = PackedVector2Array(-8, 8, -8, 4.6415167, 8, 1.8944969, 8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3anf8"]
+texture = ExtResource("6_n6v67")
+0:0/0 = 0
+1:0/0 = 0
+1:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_y3x56")
+2:0/0 = 0
+2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_qc8g6")
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+0:2/0 = 0
+0:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_q1ycg")
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_q1ycg")
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_q1ycg")
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_fhqol"]
+occlusion_layer_0/light_mask = 1
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_3anf8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhqol"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w77jt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3anf8"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("snowball_spawner")]
+script = ExtResource("1_acdnu")
+snowball_spawner = NodePath("snowball_spawn")
+goal_min = 1
+lil_guys_max = 10
+lil_guy_scene = ExtResource("2_q1ycg")
+metadata/_custom_type_script = "uid://dxdrjgk0ph461"
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(200, 112)
+scale = Vector2(25, 14)
+texture = ExtResource("4_qc8g6")
+
+[node name="TileMap" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAAAAAwAAAAAAAIAAAAAAA0AAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAXAAwAAAACAAIAAAAWAAwAAAABAAIAAAAVAAwAAAABAAIAAAAUAAwAAAABAAIAAAATAAwAAAABAAIAAAASAAwAAAABAAIAAAARAAwAAAABAAIAAAAQAAwAAAABAAIAAAAPAAwAAAABAAIAAAAOAAwAAAABAAIAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAABAAIAAAAJAAwAAAABAAIAAAAIAAwAAAABAAIAAAAHAAwAAAABAAIAAAAGAAwAAAABAAIAAAAFAAwAAAABAAIAAAAEAAwAAAABAAIAAAADAAwAAAABAAIAAAACAAwAAAABAAIAAAABAAwAAAABAAIAAAATAAsAAAAAAAEAAAAUAAsAAAABAAEAAAAVAAoAAAABAAAAAAAWAAoAAAACAAAAAAAWAAsAAAACAAEAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_fhqol")
+
+[node name="Sun" parent="." instance=ExtResource("5_q1ycg")]
+position = Vector2(192, 32)
+
+[node name="Birbs" parent="." instance=ExtResource("3_y3x56")]
+position = Vector2(192, 80)
+
+[node name="snowball_spawn" type="Marker2D" parent="."]
+position = Vector2(8, 184)
+
+[node name="goal_zone" type="Area2D" parent="."]
+position = Vector2(360, 184)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="goal_zone"]
+shape = SubResource("RectangleShape2D_fhqol")
+
+[node name="worldbounds" type="StaticBody2D" parent="."]
+
+[node name="left" type="CollisionShape2D" parent="worldbounds"]
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_w77jt")
+
+[node name="right" type="CollisionShape2D" parent="worldbounds"]
+position = Vector2(384, 0)
+rotation = -1.5707964
+shape = SubResource("WorldBoundaryShape2D_3anf8")
+
+[connection signal="body_entered" from="goal_zone" to="." method="_on_goal_zone_body_entered"]

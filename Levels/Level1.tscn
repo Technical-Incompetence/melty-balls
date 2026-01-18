@@ -1,90 +1,16 @@
-[gd_scene load_steps=13 format=4 uid="uid://m4ihrjrxa1ig"]
+[gd_scene load_steps=2 format=4 uid="uid://i56i4mpom46i"]
 
-[ext_resource type="Script" uid="uid://b7a5p2lnl2eev" path="res://Levels/level_1.gd" id="1_3anf8"]
-[ext_resource type="Texture2D" uid="uid://cw5kx62uakpqr" path="res://Assets/Tilesets/snow-floor-tiles.png" id="1_w77jt"]
-[ext_resource type="Texture2D" uid="uid://bhokl7ayqb7rr" path="res://Assets/Tilesets/background.png" id="2_fhqol"]
+[ext_resource type="PackedScene" uid="uid://m4ihrjrxa1ig" path="res://Levels/Level.tscn" id="1_w77jt"]
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_fhqol"]
-polygon = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
+[node name="Level" node_paths=PackedStringArray("birbs", "sun") instance=ExtResource("1_w77jt")]
+birbs = NodePath("Birbs")
+sun = NodePath("Sun")
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_iotdp"]
-polygon = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
+[node name="TileMap" parent="." index="2"]
+tile_map_data = PackedByteArray("AAAAAAwAAAAAAAIAAAAAAA0AAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAXAAwAAAACAAIAAAAWAAwAAAABAAIAAAAVAAwAAAABAAIAAAAUAAwAAAABAAIAAAATAAwAAAABAAIAAAASAAwAAAABAAIAAAARAAwAAAABAAIAAAAQAAwAAAABAAIAAAAPAAwAAAABAAIAAAAOAAwAAAABAAIAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAABAAIAAAAJAAwAAAABAAIAAAAIAAwAAAABAAIAAAAHAAwAAAABAAIAAAAGAAwAAAABAAIAAAAFAAwAAAABAAIAAAAEAAwAAAABAAIAAAADAAwAAAABAAIAAAACAAwAAAABAAIAAAABAAwAAAABAAIAAAATAAsAAAAAAAEAAAAUAAsAAAABAAEAAAAVAAoAAAABAAAAAAAWAAoAAAACAAAAAAAWAAsAAAACAAEAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAAEAAgAAAABAAIAAAAFAAgAAAACAAIAAAADAAgAAAAAAAIAAAA=")
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nutv8"]
-polygon = PackedVector2Array(-8, 8, 8, 4, 8, 8, -8, 8)
+[node name="Sun" parent="." index="3"]
+position = Vector2(184, 32)
 
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_05pb0"]
-polygon = PackedVector2Array(-8, -4, 8, -4, 8, 8, -8, 8)
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3anf8"]
-texture = ExtResource("1_w77jt")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-2:0/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_nutv8")
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-0:2/0 = 0
-0:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_fhqol")
-0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-1:2/0 = 0
-1:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_iotdp")
-1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-2:2/0 = 0
-2:2/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_05pb0")
-2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-
-[sub_resource type="TileSet" id="TileSet_fhqol"]
-occlusion_layer_0/light_mask = 1
-physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_3anf8")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhqol"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_w77jt"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3anf8"]
-
-[node name="Level1" type="Node2D"]
-script = ExtResource("1_3anf8")
-
-[node name="CanvasModulate" type="CanvasModulate" parent="."]
-
-[node name="Background" type="Sprite2D" parent="."]
-position = Vector2(200, 112)
-scale = Vector2(25, 14)
-texture = ExtResource("2_fhqol")
-
-[node name="TileMap" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAwAAAAAAAIAAAAAAA0AAAAAAAAAAAABAA0AAAAAAAAAAAACAA0AAAAAAAAAAAADAA0AAAAAAAAAAAAEAA0AAAAAAAAAAAAFAA0AAAAAAAAAAAAGAA0AAAAAAAAAAAAHAA0AAAAAAAAAAAAIAA0AAAAAAAAAAAAJAA0AAAAAAAAAAAAKAA0AAAAAAAAAAAALAA0AAAAAAAAAAAAMAA0AAAAAAAAAAAANAA0AAAAAAAAAAAAOAA0AAAAAAAAAAAAPAA0AAAAAAAAAAAAQAA0AAAAAAAAAAAARAA0AAAAAAAAAAAASAA0AAAAAAAAAAAATAA0AAAAAAAAAAAAUAA0AAAAAAAAAAAAVAA0AAAAAAAAAAAAWAA0AAAAAAAAAAAAXAA0AAAAAAAAAAAAXAAwAAAACAAIAAAAWAAwAAAABAAIAAAAVAAwAAAABAAIAAAAUAAwAAAABAAIAAAATAAwAAAABAAIAAAASAAwAAAABAAIAAAARAAwAAAABAAIAAAAQAAwAAAABAAIAAAAPAAwAAAABAAIAAAAOAAwAAAABAAIAAAANAAwAAAABAAIAAAAMAAwAAAABAAIAAAALAAwAAAABAAIAAAAKAAwAAAABAAIAAAAJAAwAAAABAAIAAAAIAAwAAAABAAIAAAAHAAwAAAABAAIAAAAGAAwAAAABAAIAAAAFAAwAAAABAAIAAAAEAAwAAAABAAIAAAADAAwAAAABAAIAAAACAAwAAAABAAIAAAABAAwAAAABAAIAAAATAAsAAAAAAAEAAAAUAAsAAAABAAEAAAAVAAoAAAABAAAAAAAWAAoAAAACAAAAAAAWAAsAAAACAAEAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAYAAoAAAAAAAAAAAAYAAsAAAAAAAAAAAAYAAwAAAAAAAAAAAAYAA0AAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAMAAAAAAAAAAAAXAAIAAAAAAAAAAAAXAAEAAAAAAAAAAAAXAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAAYAAEAAAAAAAAAAAAYAAIAAAAAAAAAAAAYAAMAAAAAAAAAAAAYAAQAAAAAAAAAAAAYAAUAAAAAAAAAAAAYAAYAAAAAAAAAAAAYAAcAAAAAAAAAAAAYAAgAAAAAAAAAAAAYAAkAAAAAAAAAAAADAAgAAAAAAAIAAAAEAAgAAAABAAIAAAAFAAgAAAACAAIAAAA=")
-tile_set = SubResource("TileSet_fhqol")
-
-[node name="snowball_spawn" type="Marker2D" parent="."]
-position = Vector2(8, 184)
-
-[node name="birbs_spawn" type="Marker2D" parent="."]
-position = Vector2(256, 64)
-
-[node name="sun_spawn" type="Marker2D" parent="."]
-position = Vector2(192, 16)
-
-[node name="goal_zone" type="Area2D" parent="."]
-position = Vector2(360, 184)
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="goal_zone"]
-shape = SubResource("RectangleShape2D_fhqol")
-
-[node name="worldbounds" type="StaticBody2D" parent="."]
-
-[node name="left" type="CollisionShape2D" parent="worldbounds"]
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_w77jt")
-
-[node name="right" type="CollisionShape2D" parent="worldbounds"]
-position = Vector2(384, 0)
-rotation = -1.5707964
-shape = SubResource("WorldBoundaryShape2D_3anf8")
-
-[connection signal="body_entered" from="goal_zone" to="." method="_on_goal_zone_body_entered"]
+[node name="Birbs" parent="." index="4"]
+position = Vector2(224, 88)

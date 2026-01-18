@@ -43,6 +43,7 @@ metadata/_snap_enabled = true
 sprite_frames = SubResource("SpriteFrames_rgf16")
 frame_progress = 0.73638904
 script = ExtResource("4_f6s1b")
+metadata/_custom_type_script = "uid://chq4cdxt31mbe"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(11.999999, 11.999998)
