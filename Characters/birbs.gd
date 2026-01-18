@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Birbs extends CharacterBody2D
 
 @export_custom(PROPERTY_HINT_NONE, "suffix:px") var mouse_deadzone: int
 @export_custom(PROPERTY_HINT_NONE, "suffix:px") var max_speed_distance: int

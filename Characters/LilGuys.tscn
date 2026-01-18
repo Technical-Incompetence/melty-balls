@@ -43,6 +43,7 @@ size = Vector2(15, 15)
 platform_wall_layers = 1
 safe_margin = 0.001
 script = ExtResource("1_lrffq")
+metadata/_custom_type_script = "uid://dr6bqhoecnuwo"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rvt1s")
