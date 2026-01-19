@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://db8ikthn32v3m"]
+[gd_scene load_steps=6 format=3 uid="uid://db8ikthn32v3m"]
 
 [ext_resource type="PackedScene" uid="uid://dgdl3rdft4y75" path="res://UI/ui_mainmenu.tscn" id="1_03sfx"]
 [ext_resource type="Script" uid="uid://bo03ab06mkll5" path="res://_MAIN/main.gd" id="1_usosw"]
 [ext_resource type="Script" uid="uid://bwt840s3khe8j" path="res://_MAIN/scene_manager.gd" id="3_cucgf"]
+[ext_resource type="PackedScene" uid="uid://djm1r4nl81vfc" path="res://UI/UiHud.tscn" id="4_45b34"]
 [ext_resource type="PackedScene" uid="uid://2a1kyjxlde5y" path="res://UI/ui_pausemenu.tscn" id="4_cucgf"]
 
 [node name="Main" type="Node2D"]
@@ -16,6 +17,10 @@ offset_bottom = 1080.0
 offset_right = 1920.0
 offset_bottom = 1080.0
 mouse_filter = 2
+
+[node name="UiHud" parent="." instance=ExtResource("4_45b34")]
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="scene_manager" type="Node" parent="."]
 process_mode = 3
