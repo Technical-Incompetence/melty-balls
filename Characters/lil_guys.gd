@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var sprite := $AnimatedSprite2D
 @onready var light_detector: LightDetector = $LightDetector
 @onready var healthbar := $HealthBar
+@onready var detectionShape := $Area2D
 
 var direction : float
 var rotation_speed : float
@@ -53,8 +54,9 @@ func _process(_delta: float) -> void:
 		shrink_scale = min_shrink_scale
 	scale = Vector2 (shrink_scale, shrink_scale)
 	
-	#if health is zero, delete self
+	#if health is zero, delete self, signal melt counter
 	if healthbar.value == 0:
+		SignalBus.meltCountUp.emit()
 		queue_free()
 
 func _physics_process(delta : float) -> void:
@@ -69,11 +71,20 @@ func _physics_process(delta : float) -> void:
 		velocity.y = 0
 	
 	move_and_slide()
+	
+	#detect if overlapping a goal zone
+	for area in detectionShape.get_overlapping_areas():
+		if area.is_in_group("goal"):
+			goalReached()
+			break
 	#NOTE: wall check MUST happen after move_and_slide
 	#otherwise get stuck on the wall due to order of physics processing
 	if is_on_wall():
 		direction *= -1
 		rotation_speed *= -1
 		
+func goalReached():
+	SignalBus.goalCountUp.emit()
+	queue_free()
 #TODO: should have an animation handler that takes in things like light_detection, hitting wall, etc.
 #		then processes the correct animation the AnimatedSprite2D should be playing at any given time

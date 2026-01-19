@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c7o1t4l0sfnfd"]
+[gd_scene load_steps=12 format=3 uid="uid://c7o1t4l0sfnfd"]
 
 [ext_resource type="Script" uid="uid://dr6bqhoecnuwo" path="res://Characters/lil_guys.gd" id="1_lrffq"]
 [ext_resource type="Texture2D" uid="uid://dfk8ielw3cgwd" path="res://Assets/Sprites/lilguys/lil-guys1.png" id="1_nwhps"]
@@ -39,6 +39,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7w877"]
 size = Vector2(15, 15)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ali6u"]
+size = Vector2(15, 15)
+
 [node name="LilGuys" type="CharacterBody2D"]
 platform_wall_layers = 1
 safe_margin = 0.001
@@ -48,7 +51,7 @@ metadata/_custom_type_script = "uid://dr6bqhoecnuwo"
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_rvt1s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PhysicsShape" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_7w877")
 
 [node name="LightDetector" type="RayCast2D" parent="."]
@@ -58,6 +61,11 @@ metadata/_custom_type_script = "uid://cmfdqd267xvxg"
 
 [node name="DebugLine" type="Line2D" parent="LightDetector"]
 width = 2.0
+
+[node name="Area2D" type="Area2D" parent="." groups=["lilguys"]]
+
+[node name="DetectionShape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ali6u")
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
 offset_left = -8.0

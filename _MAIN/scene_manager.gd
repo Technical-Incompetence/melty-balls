@@ -4,6 +4,7 @@ extends Node
 @onready var mainmenu := $"../UiMainmenu"
 @onready var gamecanvas := $"../GameCanvas"
 @onready var pausescreen := $"../UiPauseMenu"
+@onready var hudscreen := $"../UiHud"
 
 var levelNode : Node
 var levelPath : String
@@ -26,6 +27,7 @@ func loadLevel(levelNum : int):
 	levelNode = load(levelPath).instantiate()
 	subview.add_child(levelNode)
 	levelNode.show()
+	hudscreen.show()
 
 #unload current levelNode from memory
 func unloadLevel():
@@ -39,5 +41,6 @@ func loadMainMenu():
 	SignalBus.updateGameState.emit(Global.GameState.MAINMENU)
 	unloadLevel()
 	gamecanvas.hide()
+	hudscreen.hide()
 	pausescreen.hide()
 	mainmenu.show()
