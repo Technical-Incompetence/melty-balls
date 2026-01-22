@@ -1,4 +1,4 @@
-class_name MeltyWall extends Node2D
+class_name MeltyWall extends StaticBody2D
 
 const anim_name := &"melting"
 
@@ -11,6 +11,7 @@ var health: float
 @export var sprite: AnimatedSprite2D
 @export var particles: GPUParticles2D
 @export var occluder: LightOccluder2D
+@export var collider: CollisionPolygon2D
 
 @onready var size := sprite.sprite_frames.get_frame_texture(anim_name, 0).get_size()
 @onready var occ_top_left := Vector2(-size.x / 2, -size.y / 2)
@@ -35,18 +36,18 @@ func _ready() -> void:
 	sprite.stop()
 	sprite.frame = sprite.sprite_frames.get_frame_count(anim_name)
 	particles.emitting = false
+	#light_detector.add_exception(self)
 
 func _process(delta: float) -> void:
 	
-	# Hacky way to stop the weird issue where the wall would spawn with some damage already taken.
+	# Hacky way to stop a weird issue where the wall would randomly spawn with some damage already taken.
 	# I'm guessing it has to do with the order things are instantiated,
 	# so sometimes the raycast would spawn before occluders.
-	if !can_melt:
-		can_melt = true
-		return
-	
-	handle_health(delta)
-	particles.emitting = !shaded
+	# If we wait a frame before checking, everything should be instantiated.
+	if can_melt:
+		handle_health(delta)
+		particles.emitting = !shaded
+	can_melt = true
 
 func handle_health(delta: float) -> void:
 	# When a melty wall is in light, it starts melting.
@@ -69,19 +70,20 @@ func handle_health(delta: float) -> void:
 	var health_interval := max_health / frame_count
 	
 	# Now we use integer division to determine which frame the current health value corresponds to.
-	# Note that the animation frames were ordered in reverse to facilitate this match.
-	# Subtract 1 because 0-indexing.
+	# Note that the animation frames were ordered in reverse to match the index up with decreasing health.
+	# Subtract 1 because frames are 0-indexed.
 	var frame_idx := roundi(health / health_interval) - 1
+	
+	sprite.frame = frame_idx
 	
 	# Return early so we're not recalculating occlusion polygons all the time.
 	if frame_idx == last_frame_idx:
 		return
 	
-	sprite.frame = frame_idx
 	last_frame_idx = frame_idx
 	
 	# Based on the number of frames and the height of the sprite,
-	# calculate how far the occlusion polygon should extend down.
+	# calculate how far the occlusion and collision polygons should extend down.
 	# ASSUMES SQUARE SPRITE AND STATIC TOP EXTENT!
 	var sprite_interval := size.y / frame_count
 	var bottom_extent := (sprite_interval * frame_idx) - (size.y / 2)
@@ -89,5 +91,6 @@ func handle_health(delta: float) -> void:
 	occ_bot_left.y = bottom_extent
 	occ_bot_right.y = bottom_extent
 	
-	var new_polygon: PackedVector2Array = PackedVector2Array([occ_top_left, occ_top_right, occ_bot_right, occ_bot_left])
+	var new_polygon := PackedVector2Array([occ_top_left, occ_top_right, occ_bot_right, occ_bot_left])
 	occluder.occluder.polygon = new_polygon
+	collider.polygon = new_polygon
