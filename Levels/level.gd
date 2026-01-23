@@ -69,20 +69,17 @@ func goalStateCounter():
 	goal_counter += 1
 	updateHud()
 	if goal_counter == goal_min:
-		#TODO proper victory screen before immediately loading next level
-		Global.Current_Level += 1
-		if Global.Current_Level <= 3: #current max levels that exist
-			SignalBus.loadLevel.emit(Global.Current_Level)
+		if Global.Current_Level + 1 <= Global.LAST_LEVEL: #current max levels that exist
+			SignalBus.loadVictory.emit() #victory screen
 		else:
-			SignalBus.loadMainMenu.emit() #TODO: proper THE END state
+			SignalBus.loadCredits.emit() #credits upon finishing last level
 
 func meltCounter():
 	lilguys_melted += 1
 	updateHud()
 		
 func loseState():
-	#TODO: proper gameover state+UI with restart or main menu button
-	SignalBus.loadMainMenu.emit()
+	SignalBus.loadGameOver.emit()
 	
 func updateHud():
 	HudData.current_goals = goal_counter
@@ -92,8 +89,6 @@ func updateHud():
 	HudData.lilguys_max = lilguys_max_to_spawn
 	SignalBus.updateHud.emit()
 		
-#TODO: UI child node for level class for HUD? such as lilguys left to spawn, current goals, etc?
-
 ## We have certain tiles built from Scenes, and some of them need to know about the level's light.
 ## Those Nodes are put into the "sighted_tiles" group so we can easily grab them after the fact here.
 func inform_tiles_of_light() -> void:

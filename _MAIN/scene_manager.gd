@@ -5,6 +5,9 @@ extends Node
 @onready var gamecanvas := $"../GameCanvas"
 @onready var pausescreen := $"../UiPauseMenu"
 @onready var hudscreen := $"../UiHud"
+@onready var victoryscreen := $"../UiVictory"
+@onready var gameoverscreen := $"../UiGameOver"
+@onready var credits := $"../UiCredits"
 
 var levelNode : Node
 var levelPath : String
@@ -19,8 +22,7 @@ func updateGameState(newState : Global.GameState):
 
 func loadLevel(levelNum : int):
 	SignalBus.updateGameState.emit(Global.GameState.PLAYING)
-	mainmenu.hide()
-	pausescreen.hide()
+	hideUIs()
 	gamecanvas.show()
 	unloadLevel()
 	levelPath = "res://Levels/Level" + str(levelNum) + ".tscn"
@@ -40,8 +42,28 @@ func unloadLevel():
 func loadMainMenu():
 	SignalBus.updateGameState.emit(Global.GameState.MAINMENU)
 	unloadLevel()
-	gamecanvas.hide()
-	hudscreen.hide()
-	pausescreen.hide()
+	hideUIs()
 	mainmenu.show()
 	
+func loadCredits():
+	SignalBus.updateGameState.emit(Global.GameState.CREDITS)
+	unloadLevel()
+	hideUIs()
+	credits.show()
+	
+func loadVictory():
+	SignalBus.updateGameState.emit(Global.GameState.VICTORY)
+	victoryscreen.show() #we don't hide all screens, so level can still be visible behind victory screen
+	
+func loadGameOver():
+	SignalBus.updateGameState.emit(Global.GameState.GAMEOVER)
+	gameoverscreen.show() #we don't hide all screens, so level can still be visible behind game over screen
+	
+func hideUIs():
+	mainmenu.hide()
+	pausescreen.hide()
+	victoryscreen.hide()
+	gameoverscreen.hide()
+	credits.hide()
+	gamecanvas.hide()
+	hudscreen.hide()
