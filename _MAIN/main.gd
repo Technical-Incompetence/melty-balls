@@ -9,6 +9,9 @@ func _ready():
 	#start listening for signals to load level or main menu
 	SignalBus.loadLevel.connect(sceneManager.loadLevel)
 	SignalBus.loadMainMenu.connect(sceneManager.loadMainMenu)
+	SignalBus.loadCredits.connect(sceneManager.loadCredits)
+	SignalBus.loadVictory.connect(sceneManager.loadVictory)
+	SignalBus.loadGameOver.connect(sceneManager.loadGameOver)
 	SignalBus.updateGameState.connect(sceneManager.updateGameState)
 
 func _input(event: InputEvent) -> void:
