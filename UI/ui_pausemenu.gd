@@ -7,10 +7,11 @@ func _ready():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
-		if get_tree().paused == false: #we only pause the game if its not already paused
-			_pause()
-		elif get_tree().paused == true: #if the game is already paused
-			_resume()
+		if isPauseInputAllowed():
+			if get_tree().paused == false: #we only pause the game if its not already paused
+				_pause()
+			elif get_tree().paused == true: #if the game is already paused
+				_resume()
 
 #pauses the game tree
 #NOTE: !!! IMPORTANT !!!
@@ -37,3 +38,11 @@ func _on_quit_button_pressed() -> void:
 
 func _on_resume_button_pressed() -> void:
 	_resume()
+	
+func isPauseInputAllowed() -> bool:
+	if Global.Current_GameState == Global.GameState.PLAYING:
+		return true
+	elif Global.Current_GameState == Global.GameState.PAUSED:
+		return true
+	else:
+		return false
