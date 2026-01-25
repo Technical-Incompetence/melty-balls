@@ -72,6 +72,7 @@ collider = NodePath("CollisionPolygon2D")
 metadata/_custom_type_script = "uid://db43mtgspyd2s"
 
 [node name="LightDetector" parent="." instance=ExtResource("3_jt2mu")]
+position = Vector2(0, -8)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_gjng0")
