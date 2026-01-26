@@ -2,7 +2,9 @@ class_name Level extends Node2D
 ## Number of lil guys that need to reach goal for win condition.
 @export var goal_min: int
 ## Max lil guys that will spawn.
-@export var lilguys_max_to_spawn : int
+@export var lilguy_spawn_max : int
+## Lil guy rolling speed for this level. Can make negative to start rolling left.
+@export var lilguy_torque: float = 500.0
 
 @export_group("Components")
 
@@ -32,7 +34,7 @@ var lilguys_max_to_lose := 0
 
 func _ready():
 	updateHud()
-	lilguys_max_to_lose = lilguys_max_to_spawn - goal_min #determines fail state if too many lilguys melt
+	lilguys_max_to_lose = lilguy_spawn_max - goal_min #determines fail state if too many lilguys melt
 	SignalBus.goalCountUp.connect(goalStateCounter)
 	SignalBus.meltCountUp.connect(meltCounter)
 	
@@ -45,7 +47,7 @@ func _ready():
 
 func _physics_process(_delta: float):
 	#spawn lilguys when spawn zone is clear and lilguy max not reached
-	if spawnZoneIsClear() && lilguy_counter < lilguys_max_to_spawn:
+	if spawnZoneIsClear() && lilguy_counter < lilguy_spawn_max:
 		spawnLilGuy()
 		lilguy_counter += 1
 		updateHud()
@@ -59,7 +61,7 @@ func spawnLilGuy():
 	#could potentially have a use case in future scope?  otherwise TODO: delete me
 	lil_guy.set_name("LilGuys_"+ str(lilguy_counter))
 	#needed for lil_guy to detect lightsource
-	lil_guy.init(sun)
+	lil_guy.init(sun, lilguy_torque)
 	lil_guy.global_position = lilguy_spawn.global_position
 	add_child(lil_guy)
 	lil_guy.show()
@@ -88,7 +90,7 @@ func loseState():
 	
 func updateHud():
 	var goal_count = goal_min - goal_counter
-	spawn_area_label.text = "[custom_wave]" + str(lilguys_max_to_spawn - lilguy_counter) + "[/custom_wave]"
+	spawn_area_label.text = "[custom_wave]" + str(lilguy_spawn_max - lilguy_counter) + "[/custom_wave]"
 	goal_label.text = "[custom_wave]" + str(goal_count if goal_count >= 0 else 0) + "[/custom_wave]"
 
 ## We have certain tiles built from Scenes, and some of them need to know about the level's light.
