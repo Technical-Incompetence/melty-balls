@@ -43,9 +43,10 @@ radius = 8.0
 radius = 8.0
 
 [node name="LilGuys" type="RigidBody2D" node_paths=PackedStringArray("sprite", "light_detector", "health_bar", "detection_shape", "physics_shape")]
-collision_layer = 3
+collision_layer = 0
 collision_mask = 3
-constant_torque = 200.0
+contact_monitor = true
+max_contacts_reported = 10
 script = ExtResource("1_lrffq")
 sprite = NodePath("AnimatedSprite2D")
 light_detector = NodePath("LightDetector")

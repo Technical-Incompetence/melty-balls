@@ -20,14 +20,29 @@ var shaded: bool:
 @export var detection_shape: Area2D
 @export var physics_shape: CollisionShape2D
 
-func init(sun: Sun) -> void:
+func init(sun: Sun, torque: float) -> void:
 	light = sun
+	add_constant_torque(torque)
 
 func _ready():
 	sprite.play("default")
 	direction = 1 #right
 	
 	health_bar.visible = false
+
+func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
+	# Get all points of contact (different from colliders) and see if any are directly left or right.
+	# This effectively detects walls.
+	# Note that lil guys do not collide (nor contact) with other lil guys.
+	for i in range(get_contact_count()):
+		var normal := state.get_contact_local_normal(i)
+		
+		# Rather than just always reversing the torque when a wall is hit,
+		# specifically only go left when a right wall is hit and vice versa.
+		if normal.x == 1:
+			constant_torque = abs(constant_torque)
+		if normal.x == -1:
+			constant_torque = abs(constant_torque) * -1
 
 func _physics_process(delta: float) -> void:
 	light_detector.set_light_position(light.global_position)
@@ -48,7 +63,7 @@ func _physics_process(delta: float) -> void:
 		#rotation_speed *= -1
 
 func handle_health(delta: float) -> void:
-	# Add some logic to handle when our lil' guy is meltingdelta
+	# Add some logic to handle when our lil' guy is melting
 	if not shaded:
 		health_bar.value -= percent_damaged_per_second * delta
 		sprite.play("melting")
