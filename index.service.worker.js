@@ -4,7 +4,7 @@
 // Incrementing CACHE_VERSION will kick off the install event and force
 // previously cached resources to be updated from the network.
 /** @type {string} */
-const CACHE_VERSION = '1769403269|11316804';
+const CACHE_VERSION = '1769575444|11259087';
 /** @type {string} */
 const CACHE_PREFIX = 'Melty Balls-sw-cache-';
 const CACHE_NAME = CACHE_PREFIX + CACHE_VERSION;
