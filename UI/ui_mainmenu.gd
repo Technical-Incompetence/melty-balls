@@ -23,3 +23,7 @@ func _on_credits_button_pressed() -> void:
 
 func _on_licenses_button_pressed() -> void:
 	SignalBus.loadLicenses.emit()
+
+
+func _on_options_button_pressed() -> void:
+	SignalBus.loadOptions.emit()
