@@ -5,6 +5,7 @@ extends Control
 
 var level_directory := "res://Levels/"
 var level_name_regex := RegEx.create_from_string("Level(\\d+).tscn")
+var button_theme = load("res://UI/ui_theme.tres")
 
 func _ready() -> void:
 	"""
@@ -21,8 +22,17 @@ func _ready() -> void:
 	for level in levels:
 		var level_node := Button.new()
 		level_node.text = "Level %d" % level
+		level_node.theme = button_theme
+		level_node.add_theme_font_size_override("font_size", 64)
 		level_node.pressed.connect(_on_level_select_pressed.bind(level))
 		level_container.add_child(level_node)
+		
+	var main_menu_node := Button.new()
+	main_menu_node.text = "Main Menu"
+	main_menu_node.theme = button_theme
+	main_menu_node.add_theme_font_size_override("font_size", 64)
+	main_menu_node.pressed.connect(_on_main_menu_select_pressed)
+	level_container.add_child(main_menu_node)
 	
 	hide()
 
@@ -52,3 +62,7 @@ func get_level_nums() -> Array[int]:
 func _on_level_select_pressed(level: int) -> void:
 	hide()
 	SignalBus.loadLevel.emit(level)
+	
+func _on_main_menu_select_pressed() -> void:
+	hide()
+	SignalBus.loadMainMenu.emit()

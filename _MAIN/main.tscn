@@ -20,6 +20,9 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="UiLevelselect" parent="." unique_id=421965027 instance=ExtResource("3_2k1gh")]
+visible = false
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="UiPauseMenu" parent="." unique_id=1886722564 instance=ExtResource("4_cucgf")]
 visible = false
