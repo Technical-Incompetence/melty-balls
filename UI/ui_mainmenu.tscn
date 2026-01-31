@@ -51,16 +51,11 @@ theme_override_font_sizes/font_size = 64
 text = "LEVEL SELECT"
 expand_icon = true
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=767124592]
+[node name="OptionsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=607151276]
 layout_mode = 2
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 64
-text = "CREDITS"
-expand_icon = true
-
-[node name="LicensesButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=854595815]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "LICENSES"
+text = "OPTIONS / CONTROLS"
 expand_icon = true
 
 [node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=411970408]
@@ -72,8 +67,31 @@ icon = ExtResource("3_0sy5l")
 icon_alignment = 2
 expand_icon = true
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=75718964]
+layout_mode = 2
+alignment = 1
+
+[node name="CreditsButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=767124592]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "CREDITS"
+expand_icon = true
+
+[node name="LicensesButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=854595815]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "LICENSES"
+expand_icon = true
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/LicensesButton" to="." method="_on_licenses_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/LicensesButton" to="." method="_on_licenses_button_pressed"]

@@ -16,6 +16,7 @@ func _ready():
 	SignalBus.loadVictory.connect(sceneManager.loadVictory)
 	SignalBus.loadGameOver.connect(sceneManager.loadGameOver)
 	SignalBus.updateGameState.connect(sceneManager.updateGameState)
+	SignalBus.loadOptions.connect(sceneManager.toggleOptionsScreen)
 	#play music
 	music.play()
 

@@ -10,9 +10,11 @@ extends Node
 @onready var gameoverscreen := $"../UiGameOver"
 @onready var credits := $"../UiCredits"
 @onready var licenses := $"../UiLicenses"
+@onready var options := $"../UiOptions"
 
 var levelNode : Node
 var levelPath : String
+var prevGameState : Global.GameState
 
 #hide main menu ui, show gamecanvas
 #unload any previously loaded level
@@ -73,6 +75,14 @@ func loadGameOver():
 	SignalBus.updateGameState.emit(Global.GameState.GAMEOVER)
 	gameoverscreen.show() #we don't hide all screens, so level can still be visible behind game over screen
 	
+func toggleOptionsScreen():
+	#options should be accessible from mainmenu, pause, etc.
+	#options should always be in memory and does not affect game state
+	if options.is_visible_in_tree():
+		options.hide()
+	else:
+		options.show()
+	
 func hideUIs():
 	mainmenu.hide()
 	pausescreen.hide()
@@ -82,3 +92,4 @@ func hideUIs():
 	licenses.hide()
 	gamecanvas.hide()
 	hudscreen.hide()
+	options.hide()

@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://cqckx4t60gyh8"]
+
+[ext_resource type="Theme" uid="uid://cnh7h68snirln" path="res://UI/ui_theme.tres" id="1_w8fey"]
+[ext_resource type="Script" uid="uid://cjymexivq8p81" path="res://UI/ui_options.gd" id="2_81o50"]
+
+[node name="UiOptions" type="Control" unique_id=1415332407]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_w8fey")
+script = ExtResource("2_81o50")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=767387131]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.28001687, 0.40481612, 0.4759704, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=309966558]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.025
+anchor_top = 0.025
+anchor_right = 0.975
+anchor_bottom = 0.975
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2035186829]
+clip_contents = true
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=968767952]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="options title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=803133971]
+layout_mode = 2
+theme = ExtResource("1_w8fey")
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center][u]OPTIONS[/u][/center]"
+fit_content = true
+scroll_active = false
+
+[node name="music header" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1668899188]
+layout_mode = 2
+theme = ExtResource("1_w8fey")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Music Volume[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="musicVolumeContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1775612813]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="minus" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer" unique_id=1826421690]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "-"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer" unique_id=1154574324]
+custom_minimum_size = Vector2(1000, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer/VBoxContainer" unique_id=552971905]
+layout_mode = 2
+tooltip_text = "Music Volume"
+max_value = 1.0
+step = 0.1
+value = 1.0
+tick_count = 11
+ticks_on_borders = true
+ticks_position = 2
+
+[node name="plus" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer" unique_id=1041814061]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "+"
+
+[node name="screen header" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=533884569]
+layout_mode = 2
+theme = ExtResource("1_w8fey")
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center]Screen Setting
+[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1392998423]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+selected = 0
+item_count = 2
+popup/item_0/text = "Windowed Mode"
+popup/item_0/id = 0
+popup/item_1/text = "Fullscreen Mode"
+popup/item_1/id = 1
+
+[node name="controls header" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=26997679]
+layout_mode = 2
+theme = ExtResource("1_w8fey")
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/normal_font_size = 64
+bbcode_enabled = true
+text = "[center][u]Controls[/u]
+[/center]"
+fit_content = true
+scroll_active = false
+
+[node name="controls" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=481955911]
+layout_mode = 2
+theme_override_constants/line_separation = 10
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[u]Move Left[/u]		A, Left Arrow *
+[u]Move Right[/u]		D, Right Arrow *
+[u]Pause[/u]				ESC
+*OR left-click and drag mouse to move
+[center][u]For Web/Mobile[/u][/center]
+[u]Move[/u]						Arrows in bottom corners
+[u]Pause/Resume[/u]		Pause/Play in top-right corner
+"
+fit_content = true
+scroll_active = false
+
+[node name="ExitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=862677452]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "EXIT OPTIONS
+"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer/minus" to="." method="_on_minus_pressed"]
+[connection signal="value_changed" from="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer/VBoxContainer/HSlider" to="." method="_on_h_slider_value_changed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/musicVolumeContainer/plus" to="." method="_on_plus_pressed"]
+[connection signal="item_selected" from="MarginContainer/HBoxContainer/VBoxContainer/OptionButton" to="." method="_on_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

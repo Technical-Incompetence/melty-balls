@@ -50,3 +50,7 @@ func isPauseInputAllowed() -> bool:
 		return true
 	else:
 		return false
+
+
+func _on_options_button_pressed() -> void:
+	SignalBus.loadOptions.emit()
