@@ -29,7 +29,7 @@ var light: Sun:
 		light_detector.set_light_position(light.global_position)
 
 var shaded: bool:
-	get: return light_detector.is_colliding()
+	get: return light_detector.is_shaded()
 
 func _ready() -> void:
 	health = max_health
@@ -46,7 +46,8 @@ func _process(delta: float) -> void:
 	# If we wait a frame before checking, everything should be instantiated.
 	if can_melt:
 		handle_health(delta)
-		particles.emitting = !shaded
+		# The condition here allows us to emit sweat particles without melting during the ready state.
+		particles.emitting = !(shaded && light_detector.is_colliding())
 	can_melt = true
 
 func handle_health(delta: float) -> void:

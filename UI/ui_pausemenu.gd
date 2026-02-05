@@ -34,8 +34,8 @@ func _on_main_menu_button_pressed() -> void:
 	SignalBus.loadMainMenu.emit()
 	
 func _on_restart_button_pressed() -> void:
-	SignalBus.loadLevel.emit(Global.Current_Level)
 	_resume()
+	SignalBus.loadLevel.emit(Global.Current_Level)
 
 func _on_quit_button_pressed() -> void:
 	get_tree().quit()

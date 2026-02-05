@@ -48,6 +48,10 @@ func _ready():
 	call_deferred("inform_tiles_of_light")
 
 func _physics_process(_delta: float):
+	# If the level hasn't started, don't do anything
+	if Global.Current_GameState == Global.GameState.READY:
+		return
+	
 	#spawn lilguys when spawn zone is clear and lilguy max not reached
 	if spawnZoneIsClear() && lilguy_counter < lilguy_spawn_max:
 		spawnLilGuy()

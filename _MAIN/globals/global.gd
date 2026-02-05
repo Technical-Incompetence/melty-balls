@@ -4,6 +4,7 @@ extends Node
 enum GameState {
 	MAINMENU,
 	PAUSED,
+	READY,
 	PLAYING,
 	VICTORY,
 	GAMEOVER,

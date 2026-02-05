@@ -11,6 +11,7 @@ extends Node
 @onready var credits := $"../UiCredits"
 @onready var licenses := $"../UiLicenses"
 @onready var options := $"../UiOptions"
+@onready var readyscreen := $"../UiReady"
 
 var levelNode : Node
 var levelPath : String
@@ -25,7 +26,6 @@ func updateGameState(newState : Global.GameState):
 	Global.Current_GameState = newState
 
 func loadLevel(levelNum : int):
-	SignalBus.updateGameState.emit(Global.GameState.PLAYING)
 	hideUIs()
 	gamecanvas.show()
 	unloadLevel()
@@ -34,6 +34,8 @@ func loadLevel(levelNum : int):
 	subview.add_child(levelNode)
 	levelNode.show()
 	hudscreen.show()
+	readyscreen.show()
+	SignalBus.updateGameState.emit(Global.GameState.READY)
 
 #unload current levelNode from memory
 func unloadLevel():
