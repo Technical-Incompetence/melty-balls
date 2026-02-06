@@ -20,7 +20,7 @@ func _ready():
 	#play music
 	music.play()
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("toggle_debug", false, true):
-		Global.debug = !Global.debug
-		SignalBus.toggle_debug.emit(Global.debug)
+#func _input(event: InputEvent) -> void:
+	#if event.is_action_pressed("toggle_debug", false, true):
+		#Global.debug = !Global.debug
+		#SignalBus.toggle_debug.emit(Global.debug)
