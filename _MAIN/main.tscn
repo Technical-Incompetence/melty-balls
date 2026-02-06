@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://chpvuer3lqoam" path="res://UI/ui_victory.tscn" id="5_hhsx1"]
 [ext_resource type="PackedScene" uid="uid://dyedeq7fgm004" path="res://UI/ui_licenses.tscn" id="8_tdj4x"]
 [ext_resource type="PackedScene" uid="uid://cqckx4t60gyh8" path="res://UI/ui_options.tscn" id="10_kpb75"]
+[ext_resource type="PackedScene" uid="uid://c46mtk4ep0b06" path="res://UI/ui_ready.tscn" id="11_yu52p"]
 [ext_resource type="AudioStream" uid="uid://hhtw3dto2dxy" path="res://Assets/Sound/Music/Roly_Poly_Snowy_Theme_demo2.wav" id="12_kpb75"]
 
 [node name="Main" type="Node2D" unique_id=2067750323]
@@ -59,6 +60,12 @@ mouse_filter = 2
 [node name="UiOptions" parent="." unique_id=1415332407 instance=ExtResource("10_kpb75")]
 visible = false
 z_index = 200
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="UiReady" parent="." unique_id=1166869461 instance=ExtResource("11_yu52p")]
+visible = false
+z_index = 100
 offset_right = 1920.0
 offset_bottom = 1080.0
 

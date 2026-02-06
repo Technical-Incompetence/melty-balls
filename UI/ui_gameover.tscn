@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://8km2cl58ui4x"]
+[gd_scene format=3 uid="uid://8km2cl58ui4x"]
 
 [ext_resource type="FontFile" uid="uid://b0fqxobgnud7b" path="res://Assets/Fonts/pixel_operator/PixelOperatorHBSC.ttf" id="1_3rrwo"]
 [ext_resource type="Script" uid="uid://c1ffy5ytvirr1" path="res://UI/ui_gameover.gd" id="1_dek56"]
@@ -6,7 +6,7 @@
 [sub_resource type="Theme" id="Theme_lun6i"]
 default_font = ExtResource("1_3rrwo")
 
-[node name="UiGameOver" type="Control"]
+[node name="UiGameOver" type="Control" unique_id=1770235290]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -17,7 +17,7 @@ grow_vertical = 2
 theme = SubResource("Theme_lun6i")
 script = ExtResource("1_dek56")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1509107188]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,27 +25,27 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="bg_color" type="ColorRect" parent="MarginContainer"]
+[node name="bg_color" type="ColorRect" parent="MarginContainer" unique_id=1399333088]
 layout_mode = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.47058824)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=643738278]
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=939525208]
 layout_mode = 2
 alignment = 1
 
-[node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=660244503]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
 text = "[center][u]GAME OVER[/u][/center]"
 fit_content = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1575130180]
 layout_mode = 2
 theme_override_font_sizes/normal_font_size = 48
 theme_override_font_sizes/italics_font_size = 48
@@ -54,17 +54,17 @@ text = "[center][i]You let too many lil guys melt![/i][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="ResumeButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="ResumeButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=592884732]
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "RESTART LEVEL"
 
-[node name="MainMenuButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="MainMenuButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=757295835]
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "MAIN MENU"
 
-[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=2130075155]
 layout_mode = 2
 theme_override_font_sizes/font_size = 100
 text = "QUIT GAME"

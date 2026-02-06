@@ -11,6 +11,10 @@ func _ready():
 	
 
 func _physics_process(_delta: float) -> void:
+	# If the level hasn't started, don't do anything
+	if Global.Current_GameState != Global.GameState.PLAYING:
+		return
+	
 	#get direction based on left or right being pressed
 	#TODO: map mobile control buttons to these controls
 	

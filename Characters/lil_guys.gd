@@ -9,7 +9,7 @@ var damage_per_second: float
 
 var light: Sun
 var shaded: bool:
-	get: return light_detector.is_colliding()
+	get: return light_detector.is_shaded()
 
 @export var min_shrink_scale : float = 0.5
 
